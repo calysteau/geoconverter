@@ -45,13 +45,13 @@ A modern, user-friendly web application for converting geospatial files between 
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/calysteau/geoconverter.git
    cd geoconverter
    ```
 
 2. **Start the application**
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
 3. **Access the application**
