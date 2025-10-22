@@ -14,6 +14,8 @@ MESSAGES = {
         "format_mismatch_vector": "The selected format is not compatible with vector data. Please choose a vector format.",
         "format_mismatch_raster": "The selected format is not compatible with raster data. Please choose a raster format.",
         "unknown_error": "An unknown error occurred.",
+        "file_detected_vector": "Vector file detected",
+        "file_detected_raster": "Raster file detected",
     },
     "fr": {
         "upload_failed": "Échec du téléchargement du fichier. Veuillez réessayer.",
@@ -28,6 +30,8 @@ MESSAGES = {
         "format_mismatch_vector": "Le format sélectionné n'est pas compatible avec les données vectorielles. Veuillez choisir un format vectoriel.",
         "format_mismatch_raster": "Le format sélectionné n'est pas compatible avec les données raster. Veuillez choisir un format raster.",
         "unknown_error": "Une erreur inconnue s'est produite.",
+        "file_detected_vector": "Fichier vectoriel détecté",
+        "file_detected_raster": "Fichier raster détecté",
     },
     "es": {
         "upload_failed": "Error al cargar el archivo. Por favor, inténtelo de nuevo.",
@@ -42,6 +46,8 @@ MESSAGES = {
         "format_mismatch_vector": "El formato seleccionado no es compatible con datos vectoriales. Por favor, elija un formato vectorial.",
         "format_mismatch_raster": "El formato seleccionado no es compatible con datos raster. Por favor, elija un formato raster.",
         "unknown_error": "Se ha producido un error desconocido.",
+        "file_detected_vector": "Archivo vectorial detectado",
+        "file_detected_raster": "Archivo ráster detectado",
     }
 }
 

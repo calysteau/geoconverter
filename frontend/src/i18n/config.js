@@ -32,6 +32,12 @@ const resources = {
       language: "Language",
       autoDetect: "The file type is automatically detected",
       chooseCompatible: "Choose a compatible format based on your data type",
+      detecting: "Detecting file type...",
+      detectedVector: "Vector file detected",
+      detectedRaster: "Raster file detected",
+      detectionFailed: "Failed to detect file type",
+      onlyVectorFormats: "Only vector formats are available for this file",
+      onlyRasterFormats: "Only raster formats are available for this file",
     }
   },
   fr: {
@@ -64,6 +70,12 @@ const resources = {
       language: "Langue",
       autoDetect: "Le type de fichier est automatiquement détecté",
       chooseCompatible: "Choisissez un format compatible selon votre type de données",
+      detecting: "Détection du type de fichier...",
+      detectedVector: "Fichier vectoriel détecté",
+      detectedRaster: "Fichier raster détecté",
+      detectionFailed: "Échec de la détection du type de fichier",
+      onlyVectorFormats: "Seuls les formats vectoriels sont disponibles pour ce fichier",
+      onlyRasterFormats: "Seuls les formats raster sont disponibles pour ce fichier",
     }
   },
   es: {
@@ -96,6 +108,12 @@ const resources = {
       language: "Idioma",
       autoDetect: "El tipo de archivo se detecta automáticamente",
       chooseCompatible: "Elija un formato compatible según su tipo de datos",
+      detecting: "Detectando tipo de archivo...",
+      detectedVector: "Archivo vectorial detectado",
+      detectedRaster: "Archivo ráster detectado",
+      detectionFailed: "Error al detectar el tipo de archivo",
+      onlyVectorFormats: "Solo los formatos vectoriales están disponibles para este archivo",
+      onlyRasterFormats: "Solo los formatos ráster están disponibles para este archivo",
     }
   }
 };

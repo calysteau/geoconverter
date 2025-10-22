@@ -10,6 +10,8 @@ import axios from 'axios';
 function App() {
   const { t } = useTranslation();
   const [file, setFile] = useState(null);
+  const [fileType, setFileType] = useState(null); // 'vector' or 'raster'
+  const [detecting, setDetecting] = useState(false);
   const [selectedFormat, setSelectedFormat] = useState('');
   const [converting, setConverting] = useState(false);
   const [result, setResult] = useState(null);
@@ -29,10 +31,35 @@ function App() {
     }
   };
 
-  const handleFileSelect = (selectedFile) => {
+  const handleFileSelect = async (selectedFile) => {
     setFile(selectedFile);
     setResult(null);
     setError(null);
+    setFileType(null);
+    setSelectedFormat('');
+
+    if (!selectedFile) return;
+
+    // Detect file type
+    setDetecting(true);
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+    formData.append('lang', localStorage.getItem('i18nextLng') || 'en');
+
+    try {
+      const response = await axios.post('/api/detect', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      setFileType(response.data.file_type);
+    } catch (error) {
+      setError(error.response?.data?.detail || t('detectionFailed'));
+      setFile(null);
+    } finally {
+      setDetecting(false);
+    }
   };
 
   const handleFormatSelect = (format) => {
@@ -77,6 +104,7 @@ function App() {
 
   const handleReset = () => {
     setFile(null);
+    setFileType(null);
     setSelectedFormat('');
     setResult(null);
     setError(null);
@@ -114,6 +142,31 @@ function App() {
                   {t('step1')}
                 </h2>
                 <FileUpload onFileSelect={handleFileSelect} selectedFile={file} />
+
+                {detecting && (
+                  <div className="mt-3 flex items-center text-purple-600">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span className="text-sm">{t('detecting')}</span>
+                  </div>
+                )}
+
+                {fileType && !detecting && (
+                  <div className={`mt-3 p-3 rounded-lg ${
+                    fileType === 'vector'
+                      ? 'bg-blue-50 border border-blue-200'
+                      : 'bg-green-50 border border-green-200'
+                  }`}>
+                    <p className={`text-sm font-semibold ${
+                      fileType === 'vector' ? 'text-blue-700' : 'text-green-700'
+                    }`}>
+                      ✓ {fileType === 'vector' ? t('detectedVector') : t('detectedRaster')}
+                    </p>
+                  </div>
+                )}
+
                 <p className="text-sm text-gray-500 mt-2">
                   💡 {t('autoDetect')}
                 </p>
@@ -131,7 +184,16 @@ function App() {
                   formats={formats}
                   selectedFormat={selectedFormat}
                   onFormatSelect={handleFormatSelect}
+                  fileType={fileType}
+                  disabled={!fileType || detecting}
                 />
+                {fileType && (
+                  <div className="mt-3 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                    <p className="text-sm text-yellow-800">
+                      ℹ️ {fileType === 'vector' ? t('onlyVectorFormats') : t('onlyRasterFormats')}
+                    </p>
+                  </div>
+                )}
                 <p className="text-sm text-gray-500 mt-2">
                   💡 {t('chooseCompatible')}
                 </p>

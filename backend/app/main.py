@@ -40,6 +40,56 @@ async def get_supported_formats(lang: str = "en"):
         "raster": converter.get_raster_formats()
     }
 
+@app.post("/api/detect")
+async def detect_file_type(
+    file: UploadFile = File(...),
+    lang: str = Form("en")
+):
+    """Detect if uploaded file is vector or raster"""
+
+    # Generate unique ID for this detection
+    job_id = str(uuid.uuid4())
+
+    # Save uploaded file temporarily
+    input_path = UPLOAD_DIR / f"{job_id}_{file.filename}"
+    try:
+        with open(input_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=get_message("upload_failed", lang)
+        )
+
+    try:
+        # Detect file type
+        file_type = converter.detect_file_type(str(input_path))
+
+        if file_type == "unknown":
+            raise HTTPException(
+                status_code=400,
+                detail=get_message("unknown_file_type", lang)
+            )
+
+        return {
+            "success": True,
+            "file_type": file_type,
+            "message": get_message(f"file_detected_{file_type}", lang),
+            "filename": file.filename
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"{get_message('unknown_error', lang)}: {str(e)}"
+        )
+    finally:
+        # Clean up temporary file
+        if input_path.exists():
+            input_path.unlink()
+
 @app.post("/api/convert")
 async def convert_file(
     file: UploadFile = File(...),
