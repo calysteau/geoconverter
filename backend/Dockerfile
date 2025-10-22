@@ -15,6 +15,9 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip3 install --break-system-packages --no-cache-dir -r requirements.txt
 
+# Install GDAL Python bindings matching the system GDAL version
+RUN pip3 install --break-system-packages --no-cache-dir GDAL==$(gdal-config --version)
+
 # Copy application code
 COPY . .
 
