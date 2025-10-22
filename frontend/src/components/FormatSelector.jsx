@@ -1,0 +1,59 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Box, Map } from 'lucide-react';
+
+function FormatSelector({ formats, selectedFormat, onFormatSelect }) {
+  const { t } = useTranslation();
+
+  const FormatButton = ({ format, type }) => (
+    <button
+      onClick={() => onFormatSelect(format.code)}
+      className={`p-3 rounded-lg border-2 transition-all text-left ${
+        selectedFormat === format.code
+          ? 'border-purple-600 bg-purple-50 shadow-md'
+          : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'
+      }`}
+    >
+      <div className="font-semibold text-gray-800">{format.name}</div>
+      <div className="text-sm text-gray-500">.{format.extension}</div>
+    </button>
+  );
+
+  return (
+    <div className="space-y-6">
+      {/* Vector Formats */}
+      <div>
+        <h3 className="text-lg font-semibold mb-3 flex items-center text-gray-800">
+          <Map className="w-5 h-5 mr-2 text-blue-600" />
+          {t('vectorFormats')}
+        </h3>
+        <p className="text-sm text-gray-600 mb-3">
+          {t('vectorDesc')}
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {formats.vector.map((format) => (
+            <FormatButton key={format.code} format={format} type="vector" />
+          ))}
+        </div>
+      </div>
+
+      {/* Raster Formats */}
+      <div>
+        <h3 className="text-lg font-semibold mb-3 flex items-center text-gray-800">
+          <Box className="w-5 h-5 mr-2 text-green-600" />
+          {t('rasterFormats')}
+        </h3>
+        <p className="text-sm text-gray-600 mb-3">
+          {t('rasterDesc')}
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {formats.raster.map((format) => (
+            <FormatButton key={format.code} format={format} type="raster" />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default FormatSelector;
