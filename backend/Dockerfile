@@ -1,4 +1,4 @@
-FROM osgeo/gdal:ubuntu-full-3.8.0
+FROM ghcr.io/osgeo/gdal:ubuntu-full-latest
 
 # Set working directory
 WORKDIR /app
