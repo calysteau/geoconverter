@@ -111,32 +111,42 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center mb-4">
-            <Globe className="w-16 h-16 text-white" />
+    <div className="min-h-screen bg-bg-secondary">
+      {/* Header */}
+      <header className="bg-bg-dark shadow-md sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <Globe className="w-10 h-10 text-primary" />
+            <h1 className="text-2xl font-bold text-text-inverse">
+              GeoConverter
+            </h1>
           </div>
-          <h1 className="text-4xl font-bold text-white mb-2">
+          <LanguageSelector />
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-bg-dark to-[#1a2a32] text-text-inverse py-12 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-4">
             {t('title')}
-          </h1>
-          <p className="text-white/90 text-lg">
+          </h2>
+          <p className="text-lg opacity-90">
             {t('subtitle')}
           </p>
-          <div className="mt-4 flex justify-center">
-            <LanguageSelector />
-          </div>
         </div>
+      </section>
 
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Main Card */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
+        <div className="bg-white rounded-lg shadow-lg p-8">
           {!result ? (
             <>
               {/* Step 1: File Upload */}
               <div className="mb-8">
-                <h2 className="text-xl font-semibold mb-4 flex items-center">
-                  <span className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">
+                <h2 className="text-xl font-semibold mb-4 flex items-center text-text-primary">
+                  <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">
                     1
                   </span>
                   {t('step1')}
@@ -144,7 +154,7 @@ function App() {
                 <FileUpload onFileSelect={handleFileSelect} selectedFile={file} />
 
                 {detecting && (
-                  <div className="mt-3 flex items-center text-purple-600">
+                  <div className="mt-3 flex items-center text-primary">
                     <svg className="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -154,10 +164,10 @@ function App() {
                 )}
 
                 {fileType && !detecting && (
-                  <div className={`mt-3 p-3 rounded-lg ${
+                  <div className={`mt-3 p-3 rounded-lg border ${
                     fileType === 'vector'
-                      ? 'bg-blue-50 border border-blue-200'
-                      : 'bg-green-50 border border-green-200'
+                      ? 'bg-blue-50 border-blue-200'
+                      : 'bg-green-50 border-green-200'
                   }`}>
                     <p className={`text-sm font-semibold ${
                       fileType === 'vector' ? 'text-blue-700' : 'text-green-700'
@@ -167,15 +177,15 @@ function App() {
                   </div>
                 )}
 
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-text-secondary mt-2">
                   💡 {t('autoDetect')}
                 </p>
               </div>
 
               {/* Step 2: Format Selection */}
               <div className="mb-8">
-                <h2 className="text-xl font-semibold mb-4 flex items-center">
-                  <span className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">
+                <h2 className="text-xl font-semibold mb-4 flex items-center text-text-primary">
+                  <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">
                     2
                   </span>
                   {t('step2')}
@@ -188,21 +198,21 @@ function App() {
                   disabled={!fileType || detecting}
                 />
                 {fileType && (
-                  <div className="mt-3 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                    <p className="text-sm text-yellow-800">
+                  <div className="mt-3 bg-secondary/10 border border-secondary rounded-lg p-3">
+                    <p className="text-sm text-secondary">
                       ℹ️ {fileType === 'vector' ? t('onlyVectorFormats') : t('onlyRasterFormats')}
                     </p>
                   </div>
                 )}
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-text-secondary mt-2">
                   💡 {t('chooseCompatible')}
                 </p>
               </div>
 
               {/* Step 3: Convert */}
               <div>
-                <h2 className="text-xl font-semibold mb-4 flex items-center">
-                  <span className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">
+                <h2 className="text-xl font-semibold mb-4 flex items-center text-text-primary">
+                  <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">
                     3
                   </span>
                   {t('step3')}
@@ -210,7 +220,7 @@ function App() {
                 <button
                   onClick={handleConvert}
                   disabled={converting || !file || !selectedFormat}
-                  className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl"
+                  className="w-full bg-primary text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
                 >
                   {converting ? (
                     <span className="flex items-center justify-center">
@@ -235,7 +245,7 @@ function App() {
               )}
 
               {/* Info */}
-              <div className="mt-8 text-center text-sm text-gray-500">
+              <div className="mt-8 text-center text-sm text-text-secondary">
                 {t('supportedFormats')}
               </div>
             </>
@@ -243,12 +253,14 @@ function App() {
             <ConversionResult result={result} onReset={handleReset} />
           )}
         </div>
-
-        {/* Footer */}
-        <div className="text-center mt-8 text-white/80 text-sm">
-          Powered by GDAL/OGR
-        </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-bg-dark text-text-inverse py-8 px-4 mt-auto">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-sm opacity-70">Powered by GDAL/OGR</p>
+        </div>
+      </footer>
     </div>
   );
 }

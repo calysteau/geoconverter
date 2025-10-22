@@ -30,24 +30,24 @@ function ConversionResult({ result, onReset }) {
 
   return (
     <div className="text-center py-8">
-      <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
+      <CheckCircle className="w-20 h-20 text-primary mx-auto mb-6" />
 
-      <h2 className="text-3xl font-bold text-gray-800 mb-2">
+      <h2 className="text-3xl font-bold text-text-primary mb-2">
         {t('downloadReady')}
       </h2>
 
-      <p className="text-gray-600 mb-8">
+      <p className="text-text-secondary mb-8">
         {result.message}
       </p>
 
-      <div className="bg-gray-50 rounded-lg p-6 mb-8 inline-block">
-        <div className="text-sm text-gray-600 mb-2">
+      <div className="bg-bg-secondary rounded-lg p-6 mb-8 inline-block border border-gray-200">
+        <div className="text-sm text-text-secondary mb-2">
           <strong>{t('fileSelected')}:</strong> {result.filename}
         </div>
-        <div className="text-sm text-gray-600 mb-2">
+        <div className="text-sm text-text-secondary mb-2">
           <strong>Type:</strong> {result.input_type}
         </div>
-        <div className="text-sm text-gray-600">
+        <div className="text-sm text-text-secondary">
           <strong>Format:</strong> {result.output_format.toUpperCase()}
         </div>
       </div>
@@ -55,7 +55,7 @@ function ConversionResult({ result, onReset }) {
       <div className="space-y-3">
         <button
           onClick={handleDownload}
-          className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center"
+          className="w-full bg-primary text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-primary-dark transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center"
         >
           <Download className="w-5 h-5 mr-2" />
           {t('download')}
@@ -63,7 +63,7 @@ function ConversionResult({ result, onReset }) {
 
         <button
           onClick={onReset}
-          className="w-full bg-gray-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-gray-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center"
+          className="w-full bg-bg-dark text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-bg-darker transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center"
         >
           <RefreshCw className="w-5 h-5 mr-2" />
           {t('convertAnother')}

@@ -13,12 +13,12 @@ function FormatSelector({ formats, selectedFormat, onFormatSelect, fileType, dis
         isDisabled
           ? 'border-gray-100 bg-gray-50 opacity-40 cursor-not-allowed'
           : selectedFormat === format.code
-          ? 'border-purple-600 bg-purple-50 shadow-md'
-          : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50 cursor-pointer'
+          ? 'border-primary bg-primary/10 shadow-md'
+          : 'border-gray-200 hover:border-primary/50 hover:bg-bg-secondary cursor-pointer'
       }`}
     >
-      <div className="font-semibold text-gray-800">{format.name}</div>
-      <div className="text-sm text-gray-500">.{format.extension}</div>
+      <div className="font-semibold text-text-primary">{format.name}</div>
+      <div className="text-sm text-text-secondary">.{format.extension}</div>
     </button>
   );
 
@@ -30,11 +30,11 @@ function FormatSelector({ formats, selectedFormat, onFormatSelect, fileType, dis
     <div className={`space-y-6 ${disabled ? 'opacity-50 pointer-events-none' : ''}`}>
       {/* Vector Formats */}
       <div className={!shouldShowVector ? 'hidden' : ''}>
-        <h3 className="text-lg font-semibold mb-3 flex items-center text-gray-800">
+        <h3 className="text-lg font-semibold mb-3 flex items-center text-text-primary">
           <Map className="w-5 h-5 mr-2 text-blue-600" />
           {t('vectorFormats')}
         </h3>
-        <p className="text-sm text-gray-600 mb-3">
+        <p className="text-sm text-text-secondary mb-3">
           {t('vectorDesc')}
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -51,11 +51,11 @@ function FormatSelector({ formats, selectedFormat, onFormatSelect, fileType, dis
 
       {/* Raster Formats */}
       <div className={!shouldShowRaster ? 'hidden' : ''}>
-        <h3 className="text-lg font-semibold mb-3 flex items-center text-gray-800">
+        <h3 className="text-lg font-semibold mb-3 flex items-center text-text-primary">
           <Box className="w-5 h-5 mr-2 text-green-600" />
           {t('rasterFormats')}
         </h3>
-        <p className="text-sm text-gray-600 mb-3">
+        <p className="text-sm text-text-secondary mb-3">
           {t('rasterDesc')}
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">

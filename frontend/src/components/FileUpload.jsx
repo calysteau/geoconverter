@@ -61,8 +61,8 @@ function FileUpload({ onFileSelect, selectedFile }) {
           onDrop={handleDrop}
           className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all ${
             isDragging
-              ? 'border-purple-500 bg-purple-50'
-              : 'border-gray-300 hover:border-purple-400 hover:bg-gray-50'
+              ? 'border-primary bg-primary/10'
+              : 'border-gray-300 hover:border-primary/60 hover:bg-bg-secondary'
           }`}
           onClick={handleBrowseClick}
         >
@@ -74,30 +74,30 @@ function FileUpload({ onFileSelect, selectedFile }) {
             accept=".shp,.geojson,.json,.kml,.gpx,.tif,.tiff,.png,.jpg,.jpeg,.gpkg,.gml,.dxf,.csv"
           />
 
-          <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
+          <Upload className="w-12 h-12 mx-auto mb-4 text-text-secondary" />
 
-          <p className="text-lg text-gray-700 mb-2">
+          <p className="text-lg text-text-primary mb-2">
             {t('dragDrop')}
           </p>
 
-          <p className="text-sm text-gray-500 mb-4">
+          <p className="text-sm text-text-secondary mb-4">
             {t('or')}
           </p>
 
           <button
             type="button"
-            className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+            className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
           >
             {t('browse')}
           </button>
         </div>
       ) : (
-        <div className="border-2 border-purple-300 bg-purple-50 rounded-lg p-4 flex items-center justify-between">
+        <div className="border-2 border-primary bg-primary/10 rounded-lg p-4 flex items-center justify-between">
           <div className="flex items-center">
-            <File className="w-8 h-8 text-purple-600 mr-3" />
+            <File className="w-8 h-8 text-primary mr-3" />
             <div>
-              <p className="font-semibold text-gray-800">{selectedFile.name}</p>
-              <p className="text-sm text-gray-600">{formatFileSize(selectedFile.size)}</p>
+              <p className="font-semibold text-text-primary">{selectedFile.name}</p>
+              <p className="text-sm text-text-secondary">{formatFileSize(selectedFile.size)}</p>
             </div>
           </div>
           <button
