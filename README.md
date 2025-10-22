@@ -1,4 +1,7 @@
 # GIS File Converter
+
+!!! Ce projet est un test d'utilisation de Claude Code. Ne pas utiliser en opération !!!
+
 ### Modern GIS File Converter based on GDAL/OGR
 
 A modern, user-friendly web application for converting geospatial files between various formats. Built with React and Python FastAPI, powered by GDAL/OGR.
