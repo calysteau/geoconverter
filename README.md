@@ -1,5 +1,4 @@
-# GIS File Converter / Convertisseur de fichiers SIG / Conversor de archivos SIG
-
+# GIS File Converter
 ### Modern GIS File Converter based on GDAL/OGR
 
 A modern, user-friendly web application for converting geospatial files between various formats. Built with React and Python FastAPI, powered by GDAL/OGR.
